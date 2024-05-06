@@ -26,13 +26,11 @@ export default function Section({ name = "It Works!", count = 0 }: Props) {
     >
       <div class="leading-10 text-6xl" dangerouslySetInnerHTML={{
         __html: name,
-      }}/>
-
+      }} />
       <div class="flex flex-col items-center justify-center gap-2">
         <div class="flex items-center gap-4">
           <button
             hx-target="#it-works"
-            hx-swap="outerHTML"
             hx-get={downLink["f-partial"]} // htmx link for this section with the down vote props
             class="btn btn-sm btn-circle btn-outline no-animation"
           >
@@ -41,10 +39,9 @@ export default function Section({ name = "It Works!", count = 0 }: Props) {
             </span>
             <span class="loading loading-spinner hidden [.htmx-request_&]:inline" />
           </button>
-          <span>{count}</span>
+          <span id="count">{count}</span>
           <button
             hx-target="#it-works"
-            hx-swap="outerHTML"
             hx-get={upLink["f-partial"]} // htmx link for this section with the up vote props
             class="btn btn-sm btn-circle btn-outline no-animation"
           >
@@ -58,4 +55,8 @@ export default function Section({ name = "It Works!", count = 0 }: Props) {
       </div>
     </div>
   );
+}
+
+export interface DogFact {
+  fact: string;
 }
